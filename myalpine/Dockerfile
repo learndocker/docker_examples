@@ -1,5 +1,4 @@
-# THIS IS A COMMENT
-FROM alpine:latest # NOT A COMMENT
+FROM alpine:latest
 
 RUN apk update
 RUN apk add bash
