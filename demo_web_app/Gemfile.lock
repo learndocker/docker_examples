@@ -1,0 +1,50 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (5.1.4)
+      activesupport (= 5.1.4)
+    activerecord (5.1.4)
+      activemodel (= 5.1.4)
+      activesupport (= 5.1.4)
+      arel (~> 8.0)
+    activesupport (5.1.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    arel (8.0.0)
+    concurrent-ruby (1.0.5)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
+    minitest (5.10.3)
+    mustermann (1.0.1)
+    pg (0.21.0)
+    rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
+    rake (12.3.0)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    sinatra-activerecord (2.0.13)
+      activerecord (>= 3.2)
+      sinatra (>= 1.0)
+    thread_safe (0.3.6)
+    tilt (2.0.8)
+    tzinfo (1.2.4)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  pg
+  rake
+  sinatra
+  sinatra-activerecord (~> 2.0)
+
+BUNDLED WITH
+   1.15.4

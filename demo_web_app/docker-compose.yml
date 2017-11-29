@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    image: jfahrer/demo_web_app:latest
+    build:
+      context: .
+    volumes:
+      - ./:/app
+    environment:
+      POSTGRES_HOST: pg
+      POSTGRES_DB: web_app_db
+      POSTGRES_USER: web_app
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 9292:9292
+
+  wait_for:
+    image: jfahrer/demo_web_app:wait_for_pg
+    build:
+      context: .
+      args:
+        - WAIT_FOR_POSTGRES=true
+    environment:
+      POSTGRES_HOST: pg
+      POSTGRES_DB: web_app_db
+      POSTGRES_USER: web_app
+      POSTGRES_PASSWORD: secret
+
+  pg:
+    image: postgres:9.6.6-alpine
+    environment:
+      POSTGRES_DB: web_app_db
+      POSTGRES_USER: web_app
+      POSTGRES_PASSWORD: secret
