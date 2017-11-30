@@ -1,0 +1,5 @@
+This is just some text to demonstrate envsubt.
+envsubst can substitute environment variables for you!
+
+It can replace VAR1 with the value of the env var: $VAR1
+And other vars as well: $OTHER
