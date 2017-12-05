@@ -12,3 +12,8 @@ services:
     image: postgres:9.6-alpine
     env_file:
       - ./db.env
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
