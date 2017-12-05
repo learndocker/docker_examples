@@ -10,7 +10,5 @@ services:
 
   pg:
     image: postgres:9.6-alpine
-    # environment:
-    #   - POSTGRES_DB=test
     env_file:
       - ./db.env
