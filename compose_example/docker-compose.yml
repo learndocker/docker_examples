@@ -15,5 +15,11 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
 
+  alpine:
+    image: alpine:latest
+    stdin_open: true
+    tty: true
+    command: sh
+
 volumes:
   pg-data:
