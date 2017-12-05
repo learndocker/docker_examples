@@ -7,3 +7,10 @@ services:
       - 80:80
     volumes:
       - ./html:/usr/share/nginx/html
+
+  pg:
+    image: postgres:9.6-alpine
+    # environment:
+    #   - POSTGRES_DB=test
+    env_file:
+      - ./db.env
