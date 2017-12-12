@@ -19,6 +19,8 @@ services:
 
   webapp:
     image: jfahrer/demo_web_app:latest
+    depends_on:
+      - pg
     ports:
       - 9292:9292
     environment:
