@@ -15,6 +15,13 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
 
+  webapp:
+    image: jfahrer/demo_web_app:latest
+    ports:
+      - 9292:9292
+    env_file:
+      - ./app.env
+
   alpine:
     image: alpine:latest
     stdin_open: true
