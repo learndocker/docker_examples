@@ -10,8 +10,10 @@ services:
 
   pg:
     image: postgres:9.6-alpine
-    env_file:
-      - ./db.env
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
     volumes:
       - pg-data:/var/lib/postgresql/data
 
@@ -19,9 +21,11 @@ services:
     image: jfahrer/demo_web_app:latest
     ports:
       - 9292:9292
-    env_file:
-      - ./db.env
-      - ./app.env
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
 
   alpine:
     image: alpine:latest
