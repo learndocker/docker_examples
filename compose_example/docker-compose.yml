@@ -20,6 +20,7 @@ services:
     ports:
       - 9292:9292
     env_file:
+      - ./db.env
       - ./app.env
 
   alpine:
