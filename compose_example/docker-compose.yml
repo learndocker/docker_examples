@@ -18,7 +18,7 @@ services:
       - pg-data:/var/lib/postgresql/data
 
   webapp:
-    image: jfahrer/demo_web_app:latest
+    image: jfahrer/demo_web_app:wait_for_pg
     depends_on:
       - pg
     ports:
