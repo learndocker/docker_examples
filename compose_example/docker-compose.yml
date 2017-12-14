@@ -1,6 +1,15 @@
 version: '3.3'
 
 services:
+  lb:
+    image: jfahrer/lb:v3
+    depends_on:
+      - webapp
+    environment:
+      - PROXY_UPSTREAM
+    ports:
+      - 80:80
+
   pg:
     image: postgres:9.6-alpine
     environment:
