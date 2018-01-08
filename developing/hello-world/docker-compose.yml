@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  app:
+    image: jfahrer/hello-world:ruby
+    build:
+      context: .
