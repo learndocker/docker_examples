@@ -5,3 +5,5 @@ services:
     image: jfahrer/hello-world:ruby
     build:
       context: .
+    volumes:
+      - .:/app
