@@ -2,7 +2,8 @@ FROM ruby:2.4.3-alpine
 
 WORKDIR /app
 
-RUN gem install sinatra
+RUN apk update && apk add build-base postgresql-dev
+RUN gem install sinatra pg
 
 COPY app.rb .
 

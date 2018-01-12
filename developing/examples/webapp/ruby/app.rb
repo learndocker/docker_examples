@@ -1,15 +1,14 @@
 require 'sinatra'
+require 'pg'
 
 set :bind, '0.0.0.0'
 set :port, 9494
 
 get '/' do
-  File.open('/tmp/requests.txt', 'a') do |file|
-    file.puts "IP: #{request.ip}"
-    file.puts "Hostname: #{Socket.gethostname}"
-    file.puts "Path: #{request.path}"
-    file.puts "Timestamp: #{Time.now}"
-    file.puts '------------'
-  end
-  'Hello World!'
+  conn = PG::Connection.open(ENV['POSTGRES_HOST'], 5432, '', '', ENV['POSTGRES_DB'], 
+                             ENV['POSTGRES_USER'], ENV['POSTGRES_PASSWORD'])
+  sql = "INSERT INTO requests (ip, path, host, requested_at) VALUES ($1, $2, $3, $4)"
+  res  = conn.exec(sql, [request.ip, '/', Socket.gethostname, Time.now])
+  conn.finish
+  'Hello, World!'
 end
