@@ -5,6 +5,11 @@ services:
     image: jfahrer/webapp-ruby:latest
     build:
       context: .
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo
+      - POSTGRES_HOST=pg
     volumes:
       - .:/app
     ports:
