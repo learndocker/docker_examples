@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   app:
-    image: jfahrer/webapp-ruby:v1
+    image: jfahrer/webapp-ruby:v2
     build:
       context: .
     volumes:
