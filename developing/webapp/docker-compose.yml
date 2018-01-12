@@ -9,3 +9,10 @@ services:
       - .:/app
     ports:
       - 9494:9494
+
+  pg:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo
