@@ -16,3 +16,5 @@ services:
       - POSTGRES_USER=demo
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=demo
+    volumes:
+      - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
