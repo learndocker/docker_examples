@@ -1,6 +1,13 @@
 version: '3.3'
 
 services:
+  lb:
+    image: jfahrer/lb:latest
+    environment:
+      - PROXY_UPSTREAM=app:9494
+    ports:
+      - 80:80
+
   app:
     image: jfahrer/webapp-ruby:latest
     build:
@@ -12,8 +19,6 @@ services:
       - POSTGRES_HOST=pg
     volumes:
       - .:/app
-    ports:
-      - 9494:9494
 
   pg:
     image: postgres:9.6-alpine
