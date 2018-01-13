@@ -1,7 +1,9 @@
 FROM alpine:latest
 
-ARG MYSHELL=bash
-ENV MYSHELL=$MYSHELL
+ARG MYSHELL
+ENV CUSTOMSHELL=${MYSHELL:+true}
+ENV MYSHELL=${MYSHELL:-bash}
+ENV PKG=${MYSHELL}_x86
 
 RUN apk update \
       && apk add $MYSHELL \
