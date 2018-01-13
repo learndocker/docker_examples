@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  bash:
+    image: jfahrer/myalpine:bash
+    build:
+      context: .
+
+  zsh:
+    image: jfahrer/myalpine:zsh
+    build:
+      context: .
+      args:
+        - MYSHELL=zsh
