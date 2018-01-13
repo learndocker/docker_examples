@@ -1,6 +1,7 @@
 FROM alpine:3.6
 
-ENV NAME=World
+ARG NAME=Docker
+ENV NAME=$NAME
 
 COPY greeter.sh /
 
