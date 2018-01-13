@@ -5,3 +5,5 @@ services:
     image: jfahrer/greeter:latest
     build:
       context: .
+      args:
+        - NAME=Kip
