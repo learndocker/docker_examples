@@ -3,7 +3,7 @@ services:
 
   services:
     frontend:
-      image: jfahrer/swarm-demo-frontend:v3
+      image: jfahrer/swarm-demo-frontend:v4
       build:
         context: .
       ports:
