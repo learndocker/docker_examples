@@ -3,6 +3,6 @@ FROM nginx:1.13.8
 ENV NGINX_PORT 80
 
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY start.sh /
+COPY docker-entrypoint.sh /
 
-CMD ["/start.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
