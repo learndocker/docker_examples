@@ -5,3 +5,4 @@ RUN apk update \
       && rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/usr/bin/curl"]
+CMD ["--help"]
