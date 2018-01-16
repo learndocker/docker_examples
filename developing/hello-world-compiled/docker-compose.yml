@@ -2,9 +2,8 @@ version: '3.3'
 
 services:
   app:
-    image: hello-world:golang
+    image: jfahrer/hello-world:golang
     build:
       context: .
     volumes:
       - .:/go/src/app
-    command: sh -c "go build hello-world.go && ./hello-world"
