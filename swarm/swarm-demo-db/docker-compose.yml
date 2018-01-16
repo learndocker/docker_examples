@@ -1,0 +1,7 @@
+version: "3.3"
+
+services:
+  db:
+    image: jfahrer/swarm-demo-db:v1
+    build:
+      context: .
