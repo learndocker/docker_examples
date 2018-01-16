@@ -16,3 +16,5 @@ COPY ./html/ /var/www/html/
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 EXPOSE 80
+
+STOPSIGNAL SIGQUIT
