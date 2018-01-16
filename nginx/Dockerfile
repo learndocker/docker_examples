@@ -1,7 +1,10 @@
 FROM debian:buster-slim
 
+ARG NGINX_PKG_TYPE=full
+ENV NGINX_PKG=nginx-${NGINX_PKG_TYPE:-full}
+
 RUN apt-get update \
-      && apt-get install -y nginx \
+      && apt-get install -y $NGINX_PKG \
       && rm -rf /var/lib/apt/lists/* \
       && rm /var/log/nginx/access.log \
       && rm /var/log/nginx/error.log \
