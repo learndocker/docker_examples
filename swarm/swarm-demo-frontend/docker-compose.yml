@@ -1,12 +1,23 @@
-services:
-  version: "3.3"
+version: "3.3"
 
-  services:
-    frontend:
-      image: jfahrer/swarm-demo-frontend:v4
-      build:
-        context: .
-      ports:
-        - 8080:8080
-      volumes:
-        - .:/app
+services:
+  frontend:
+    image: jfahrer/swarm-demo-frontend:v5
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo
+      - POSTGRES_HOST=db
+
+  db:
+    image: jfahrer/swarm-demo-db:v1
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo
