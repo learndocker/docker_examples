@@ -1,0 +1,7 @@
+version: "3.3"
+
+services:
+  curl:
+    image: jfahrer/curl:latest
+    build:
+      context: .
