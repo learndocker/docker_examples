@@ -15,5 +15,9 @@ services:
       - ./secrets/pg_secret:/run/secrets/pg_secret
       - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
 
+  lb:
+    build:
+      context: ./lb
+
 volumes:
   pg-data:
