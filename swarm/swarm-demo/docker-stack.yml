@@ -1,12 +1,17 @@
-version: "3.3"
+version: "3.4"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v6
+    image: jfahrer/swarm-demo-frontend:v7
     env_file:
       - app.env
     deploy:
       replicas: 10
+      update_config:
+        failure_action: rollback
+        parallelism: 3
+        delay: 3s
+        max_failure_ratio: 0.1
 
   db:
     image: jfahrer/swarm-demo-db:v1
