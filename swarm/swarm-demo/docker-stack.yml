@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  frontend:
+    image: jfahrer/swarm-demo-frontend:v5
+    env_file:
+      - app.env
+    deploy:
+      replicas: 10
+
+  db:
+    image: jfahrer/swarm-demo-db:v1
+    env_file:
+      - db.env
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        reservations:
+          memory: 256M
+      placement:
+        constraints:
+          - node.hostname == node1
+
+  lb:
+    image: jfahrer/swarm-demo-lb:v1
+    environment:
+      - PROXY_UPSTREAM=frontend:8080
+    ports:
+      - 80:80
+    deploy:
+      replicas: 3
+
+volumes:
+  pg-data:
