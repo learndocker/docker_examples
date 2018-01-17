@@ -1,26 +1,21 @@
-version: "3.3"
+version: "3.4"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v8
-    build:
-      context: .
-    ports:
-      - 8080:8080
-    volumes:
-      - .:/app
-      - ./pg_secret:/var/run/pg_secret
-    environment:
-      - POSTGRES_USER=demo
-      - POSTGRES_DB=demo
-      - POSTGRES_HOST=db
-      - POSTGRES_PASSWORD_FILE=/var/run/pg_secret
+    image: jfahrer/swarm-demo-frontend:v9
+    env_file:
+      - config/app.env
 
   db:
-    image: jfahrer/swarm-demo-db:v1
-    environment:
-      - POSTGRES_USER=demo
-      - POSTGRES_DB=demo
-      - POSTGRES_PASSWORD_FILE=/var/run/pg_secret
+    image: postgres:9.6-alpine
     volumes:
-      - ./pg_secret:/var/run/pg_secret
+      - pg-data:/var/lib/postgresql/data
+    env_file:
+      - config/db.env
+
+  lb:
+    image: jfahrer/swarm-demo-lb:v1
+    environment:
+      - PROXY_UPSTREAM=frontend:8080
+    ports:
+      - 80:80

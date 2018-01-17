@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  frontend:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+      - ./secrets/pg_secret:/run/secrets/pg_secret
+
+  db:
+    volumes:
+      - ./secrets/pg_secret:/run/secrets/pg_secret
+      - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
+
+volumes:
+  pg-data:

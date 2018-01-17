@@ -1,0 +1,47 @@
+version: "3.4"
+
+services:
+  frontend:
+    env_file:
+      - config/app.prod.env
+    secrets:
+      - pg_secret
+    deploy:
+      replicas: 10
+      update_config:
+        failure_action: rollback
+        parallelism: 3
+        delay: 3s
+        max_failure_ratio: 0.1
+
+  db:
+    secrets:
+      - pg_secret
+    configs:
+      - source: create_table
+        target: /docker-entrypoint-initdb.d/create_table.sql
+        mode: 0444
+    deploy:
+      resources:
+        reservations:
+          memory: 256M
+      placement:
+        constraints:
+          - node.hostname == node1
+
+  lb:
+    deploy:
+      replicas: 3
+
+volumes:
+  pg-data:
+    driver: local
+    #...
+
+secrets:
+  pg_secret:
+    file: ./secrets/pg_secret
+
+configs:
+  create_table:
+    file: sql/create_table.sql
