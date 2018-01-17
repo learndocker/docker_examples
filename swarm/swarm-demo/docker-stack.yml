@@ -19,6 +19,8 @@ services:
     image: jfahrer/swarm-demo-db:v1
     env_file:
       - db.env
+    secrets:
+      - pg_secret
     volumes:
       - pg-data:/var/lib/postgresql/data
     deploy:
@@ -43,5 +45,5 @@ volumes:
 
 secrets:
   pg_secret:
-    external: true
+    file: ./pg_secret
 
