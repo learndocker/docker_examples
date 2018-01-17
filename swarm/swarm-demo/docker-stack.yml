@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v5
+    image: jfahrer/swarm-demo-frontend:v6
     env_file:
       - app.env
     deploy:
