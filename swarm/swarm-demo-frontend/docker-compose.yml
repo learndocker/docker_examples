@@ -2,22 +2,25 @@ version: "3.3"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v7
+    image: jfahrer/swarm-demo-frontend:v8
     build:
       context: .
     ports:
       - 8080:8080
     volumes:
       - .:/app
+      - ./pg_secret:/var/run/pg_secret
     environment:
       - POSTGRES_USER=demo
-      - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=demo
       - POSTGRES_HOST=db
+      - POSTGRES_PASSWORD_FILE=/var/run/pg_secret
 
   db:
     image: jfahrer/swarm-demo-db:v1
     environment:
       - POSTGRES_USER=demo
-      - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=demo
+      - POSTGRES_PASSWORD_FILE=/var/run/pg_secret
+    volumes:
+      - ./pg_secret:/var/run/pg_secret

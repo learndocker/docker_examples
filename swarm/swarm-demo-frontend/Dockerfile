@@ -1,6 +1,6 @@
 FROM ruby:2.4.3-alpine
 
-RUN apk --no-cache add build-base postgresql-dev
+RUN apk --no-cache add bash build-base postgresql-dev
 
 WORKDIR /tmp
 COPY Gemfile* ./
@@ -11,4 +11,5 @@ COPY . .
 
 EXPOSE 8080
 
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["/usr/local/bin/bundle", "exec", "ruby", "app.rb"]
