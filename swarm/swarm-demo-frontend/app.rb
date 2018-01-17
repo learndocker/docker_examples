@@ -14,7 +14,7 @@ get '/' do
   manager = RequestManager.new
   manager.store_request(request.ip, '/', Socket.gethostname, Time.now)
 
-  erb :index, locals: { requests: manager.get_requests(25), total_requests: AppState[:total_requests] }
+  erb :index, locals: { requests: manager.get_requests(30), total_requests: AppState[:total_requests] }
 end
 
 class RequestManager
