@@ -2,7 +2,9 @@ version: "3.4"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v7
+    image: jfahrer/swarm-demo-frontend:v8
+    secrets:
+      - pg_secret
     env_file:
       - app.env
     deploy:
@@ -38,3 +40,8 @@ services:
 
 volumes:
   pg-data:
+
+secrets:
+  pg_secret:
+    external: true
+
