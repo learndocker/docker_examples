@@ -7,12 +7,16 @@ services:
     secrets:
       - pg_secret
     deploy:
-      replicas: 10
+      replicas: 3
       update_config:
         failure_action: rollback
         parallelism: 3
         delay: 3s
         max_failure_ratio: 0.1
+      restart_policy:
+        condition: any
+        delay: 15s
+        max_attempts: 1
 
   db:
     secrets:
