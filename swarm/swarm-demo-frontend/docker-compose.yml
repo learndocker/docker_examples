@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v10
+    image: jfahrer/swarm-demo-frontend:v11
     env_file:
       - config/app.env
     healthcheck:
