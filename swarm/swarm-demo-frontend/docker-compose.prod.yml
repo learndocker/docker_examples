@@ -31,7 +31,10 @@ services:
 
   lb:
     deploy:
-      replicas: 3
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
 
 volumes:
   pg-data:
