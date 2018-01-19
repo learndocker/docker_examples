@@ -5,6 +5,11 @@ services:
     image: jfahrer/swarm-demo-frontend:v10
     env_file:
       - config/app.env
+    healthcheck:
+      test: curl -f http://localhost:8080/status || false
+      interval: 2s
+      retries: 3
+      start_period: 3s
 
   db:
     image: postgres:9.6-alpine
