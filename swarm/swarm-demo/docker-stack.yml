@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   frontend:
-    image: jfahrer/swarm-demo-frontend:v8
+    image: jfahrer/swarm-demo-frontend:v11
     secrets:
       - pg_secret
     env_file:
@@ -14,6 +14,10 @@ services:
         parallelism: 3
         delay: 3s
         max_failure_ratio: 0.1
+      restart_policy:
+        condition: any
+        delay: 15s
+        max_attempts: 1
 
   db:
     image: jfahrer/swarm-demo-db:v1
@@ -38,7 +42,10 @@ services:
     ports:
       - 80:80
     deploy:
-      replicas: 3
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
 
 volumes:
   pg-data:
@@ -46,4 +53,3 @@ volumes:
 secrets:
   pg_secret:
     file: ./pg_secret
-
