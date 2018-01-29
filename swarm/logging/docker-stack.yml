@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  fluentd:
+    image: fluent/fluentd:v1.1.0
+    ports:
+      - 24224:24224
+    configs:
+      - source: fluentd_config
+        target: /fluentd/etc/stdout.conf
+        mode: 0444
+    environment:
+      - FLUENTD_CONF=stdout.conf
+
+configs:
+  fluentd_config:
+    file: config/stdout.conf
