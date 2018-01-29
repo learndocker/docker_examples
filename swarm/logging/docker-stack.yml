@@ -12,6 +12,10 @@ services:
     environment:
       - FLUENTD_CONF=stdout.conf
 
+  client:
+    image: alpine:3.6
+    command: ping 8.8.8.8
+
 configs:
   fluentd_config:
     file: config/stdout.conf
