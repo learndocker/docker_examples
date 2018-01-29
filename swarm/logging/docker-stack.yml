@@ -2,15 +2,13 @@ version: "3.4"
 
 services:
   fluentd:
-    image: fluent/fluentd:v1.1.0
+    image: jfahrer/fluentd:v1.1.0-loggly
     ports:
       - 24224:24224
-    configs:
-      - source: fluentd_config
-        target: /fluentd/etc/stdout.conf
-        mode: 0444
     environment:
-      - FLUENTD_CONF=stdout.conf
+      - LOGGLY_TOKEN_FILE=/run/secrets/loggly_token
+    secrets:
+      - loggly_token
 
   client:
     image: alpine:3.6
@@ -20,6 +18,6 @@ services:
       options:
         fluentd-address: 127.0.0.1:24224
 
-configs:
-  fluentd_config:
-    file: config/stdout.conf
+secrets:
+  loggly_token:
+    external: true

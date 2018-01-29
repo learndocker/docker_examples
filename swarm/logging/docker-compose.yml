@@ -1,0 +1,7 @@
+version: "3.4"
+
+services:
+  fluentd:
+    image: jfahrer/fluentd:v1.1.0-loggly
+    build:
+      context: .
