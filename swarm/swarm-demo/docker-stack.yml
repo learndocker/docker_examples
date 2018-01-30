@@ -9,6 +9,11 @@ services:
       - app.env
     labels:
       app: demo
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: app.demo.frontend
     deploy:
       replicas: 10
       update_config:
@@ -32,6 +37,11 @@ services:
       - pg_secret
     volumes:
       - pg-data:/var/lib/postgresql/data
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: app.demo.db
     deploy:
       resources:
         reservations:
@@ -46,6 +56,11 @@ services:
       - PROXY_UPSTREAM=frontend:8080
     ports:
       - 80:80
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: app.demo.lb
     deploy:
       mode: global
       placement:
