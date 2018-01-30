@@ -9,6 +9,11 @@ services:
       - LOGGLY_TOKEN_FILE=/run/secrets/loggly_token
     secrets:
       - loggly_token
+    logging:
+      driver: json-file
+      options:
+        max-size: 30m
+        max-file: 3
 
   client:
     image: alpine:3.6
