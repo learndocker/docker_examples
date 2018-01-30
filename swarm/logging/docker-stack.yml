@@ -15,6 +15,35 @@ services:
         max-size: 30m
         max-file: 3
 
+  events:
+    image: docker:17.12.0-ce
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: docker events --filter scope=local
+    deploy:
+      mode: global
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: docker.events.local
+
+  swarm-events:
+    image: docker:17.12.0-ce
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: docker events --filter scope=swarm
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role==manager
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: docker.events.swarm
+
   client:
     image: alpine:3.6
     command: ping 8.8.8.8
