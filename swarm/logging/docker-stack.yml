@@ -18,10 +18,6 @@ services:
   client:
     image: alpine:3.6
     command: ping 8.8.8.8
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: 127.0.0.1:24224
 
 secrets:
   loggly_token:
