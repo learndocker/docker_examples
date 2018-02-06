@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  app:
+    image: jfahrer/pid_file_example:latest
+    build:
+      context: .
+    volumes:
+      - ./:/app
