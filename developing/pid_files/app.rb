@@ -1,5 +1,5 @@
 def pidfile
-  './tmp/app.pid'
+  '/run/app.pid'
 end
 
 def write_pid
