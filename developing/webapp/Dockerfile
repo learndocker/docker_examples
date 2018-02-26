@@ -13,4 +13,5 @@ RUN bundle install
 WORKDIR /app
 COPY . .
 
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["ruby", "app.rb"]
