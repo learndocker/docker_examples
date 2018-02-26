@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  app:
+    image: jfahrer/anagram_checker:latest
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    volumes:
+      - .:/app
+      - data
+
+volumes:
+  data:
