@@ -1,13 +1,6 @@
-version: '3.3'
+version: '3.4'
 
 services:
-  lb:
-    image: jfahrer/lb:latest
-    environment:
-      - PROXY_UPSTREAM=app:9494
-    ports:
-      - 80:80
-
   app:
     image: jfahrer/webapp-ruby:latest
     build:
@@ -29,10 +22,10 @@ services:
     volumes:
       - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
 
-  client:
-    image: jfahrer/checker-u-dev-a3:latest
+  lb:
+    image: jfahrer/lb:latest
     environment:
-      - POSTGRES_USER=demo
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=demo
-      - POSTGRES_HOST=pg
+      - PROXY_UPSTREAM=app:9494
+    ports:
+      - 80:80
+
