@@ -1,5 +1,5 @@
 ## Example
-This is an example file
+This is an even better example file
 
 ## Some text
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
