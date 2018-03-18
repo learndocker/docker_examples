@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  client:
+    image: alpine:3.6
+    command: tail -f /dev/null
+    networks:
+      - default
+      - demo_default
+      - custom_network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==node1
+
+networks:
+  demo_default:
+    external: true
+
+  custom_network:
+    driver: overlay
