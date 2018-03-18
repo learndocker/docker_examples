@@ -11,12 +11,12 @@ services:
     ports:
       - 9090:9090
     configs:
-      - source: prometheus.yml_v1
+      - source: prometheus.yml_v2
         target: /etc/prometheus/prometheus.yml
 
 
 configs:
-  prometheus.yml_v1:
+  prometheus.yml_v2:
     file: prometheus.yml
 
 volumes:
