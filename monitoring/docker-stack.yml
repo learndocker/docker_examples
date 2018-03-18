@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.2.1
+    volumes:
+      - prometheus:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - 9090:9090
+    configs:
+      - source: prometheus.yml_v1
+        target: /etc/prometheus/prometheus.yml
+
+
+configs:
+  prometheus.yml_v1:
+    file: prometheus.yml
+
+volumes:
+  prometheus:
