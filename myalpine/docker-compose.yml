@@ -5,6 +5,8 @@ services:
     image: jfahrer/myalpine:bash
     build:
       context: .
+      cache_from:
+        - jfahrer/myalpine:bash
 
   zsh:
     image: jfahrer/myalpine:zsh
@@ -12,3 +14,5 @@ services:
       context: .
       args:
         - MYSHELL=zsh
+      cache_from:
+        - jfahrer/myalpine:zsh
